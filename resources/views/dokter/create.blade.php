@@ -58,7 +58,7 @@
                 <p>2023 &copy; Kelompok </p>
             </div>
             <div class="float-end">
-                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
+                <p>Dibuat sepenuh with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
                 href="http://localcoffe.com">Kelompok</a></p>
             </div>
         </div>
