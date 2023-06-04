@@ -29,6 +29,7 @@
                     <ul class="submenu">
                         <li class="submenu-item active">
                             <a href="{{ route('pasien.index') }}">List Pasien </a>
+
                         </li>
                     </ul>
                 </li>

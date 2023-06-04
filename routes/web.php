@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PasienController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +32,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [HomeController::class, 'index']);
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+
+
+Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.index');
+Route::get('/pasien/create', [PasienController::class, 'create'])->name('pasien.create');
+Route::post('/pasien', [PasienController::class, 'store'])->name('pasien.store');
+Route::get('/pasien/{id}', [PasienController::class, 'show'])->name('pasien.show');
+Route::get('/pasien/{id}/edit', [PasienController::class, 'edit'])->name('pasien.edit');
+Route::put('/pasien/{id}', [PasienController::class, 'update'])->name('pasien.update');
+Route::delete('/pasien/{id}', [PasienController::class, 'destroy'])->name('pasien.destroy');
