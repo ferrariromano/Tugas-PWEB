@@ -10,7 +10,7 @@ class PasienController extends Controller
 {
     public function index()
     {
-        $pasien = DB::table('pasien')->get();
+        $pasien = DB::select("SELECT * FROM pasien");
         return view('pasien.index', ['pasien' => $pasien]);
     }
 
@@ -27,19 +27,19 @@ class PasienController extends Controller
             'no_telepon' => $request->no_telepon
         ];
 
-        DB::table('pasien')->insert($data);
+        DB::insert("INSERT INTO pasien (nama, alamat, no_telepon) VALUES (?, ?, ?)", [$data['nama'], $data['alamat'], $data['no_telepon']]);
         return redirect()->route('pasien.index')->with('success', 'Pasien berhasil ditambahkan.');
     }
 
     public function show($id)
     {
-        $pasien = DB::table('pasien')->where('id', $id)->first();
+        $pasien = DB::select("SELECT * FROM pasien WHERE id = ?", [$id])[0];
         return view('pasien.show', ['pasien' => $pasien]);
     }
 
     public function edit($id)
     {
-        $pasien = DB::table('pasien')->where('id', $id)->first();
+        $pasien = DB::select("SELECT * FROM pasien WHERE id = ?", [$id])[0];
         return view('pasien.edit', ['pasien' => $pasien]);
     }
 
@@ -51,13 +51,13 @@ class PasienController extends Controller
             'no_telepon' => $request->no_telepon
         ];
 
-        DB::table('pasien')->where('id', $id)->update($data);
+        DB::update("UPDATE pasien SET nama = ?, alamat = ?, no_telepon = ? WHERE id = ?", [$data['nama'], $data['alamat'], $data['no_telepon'], $id]);
         return redirect()->route('pasien.index')->with('success', 'Pasien berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
-        DB::table('pasien')->where('id', $id)->delete();
+        DB::delete("DELETE FROM pasien WHERE id = ?", [$id]);
         return redirect()->route('pasien.index')->with('success', 'Pasien berhasil dihapus.');
     }
 }

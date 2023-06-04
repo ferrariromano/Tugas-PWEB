@@ -3,7 +3,7 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                    <a href="" alt="Logo" srcset=""></a>
+                    <a href="{{ route('home') }}"><img src="{{ URL::to('assets/images/logo/logo.png') }}" alt="Logo" srcset=""></a>
                 </div>
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -41,7 +41,7 @@
                     </a>
                     <ul class="submenu">
                         <li class="submenu-item active">
-                            <a href="">List Diagnosa</a>
+                            <a href="{{ route('dokter.index')}}">List Dokter</a>
 
                         </li>
                     </ul>
