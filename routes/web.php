@@ -19,6 +19,7 @@ use App\Http\Controllers\DokterController;
 |
 */
 
+// ----------------------------- Login ------------------------------//
 Route::get('/', function () {
     return view('login');
 });
@@ -36,10 +37,10 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-
+// ----------------------------- Home ------------------------------//
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route pasien
+// ----------------------------- Pasien ------------------------------//
 Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.index');
 Route::get('/pasien/create', [PasienController::class, 'create'])->name('pasien.create');
 Route::post('/pasien', [PasienController::class, 'store'])->name('pasien.store');
@@ -48,7 +49,7 @@ Route::get('/pasien/{id}/edit', [PasienController::class, 'edit'])->name('pasien
 Route::put('/pasien/{id}', [PasienController::class, 'update'])->name('pasien.update');
 Route::delete('/pasien/{id}', [PasienController::class, 'destroy'])->name('pasien.destroy');
 
-// Route dokter
+// ----------------------------- Dokter ------------------------------//
 Route::get('/dokter', [DokterController::class, 'index'])->name('dokter.index');
 Route::get('/dokter/create', [DokterController::class, 'create'])->name('dokter.create');
 Route::post('/dokter', [DokterController::class, 'store'])->name('dokter.store');
