@@ -10,7 +10,7 @@ class PasienController extends Controller
 {
     public function index()
     {
-        $pasien = DB::select("SELECT * FROM pasien");
+        $pasien = DB::table('pasien')->get();
         return view('pasien.index', ['pasien' => $pasien]);
     }
 
@@ -33,13 +33,13 @@ class PasienController extends Controller
 
     public function show($id)
     {
-        $pasien = DB::select("SELECT * FROM pasien WHERE id = ?", [$id])[0];
+        $pasien = DB::table('pasien')->where('id', $id)->first();
         return view('pasien.show', ['pasien' => $pasien]);
     }
 
     public function edit($id)
     {
-        $pasien = DB::select("SELECT * FROM pasien WHERE id = ?", [$id])[0];
+        $pasien = DB::table('pasien')->where('id', $id)->first();
         return view('pasien.edit', ['pasien' => $pasien]);
     }
 
@@ -57,7 +57,7 @@ class PasienController extends Controller
 
     public function destroy($id)
     {
-        DB::delete("DELETE FROM pasien WHERE id = ?", [$id]);
+        DB::table('pasien')->where('id', $id)->delete();
         return redirect()->route('pasien.index')->with('success', 'Pasien berhasil dihapus.');
     }
 }
