@@ -36,12 +36,21 @@ class AuthController extends Controller
 
     public function loginPost(Request $request)
     {
-        $credetials = [
+        $credentials = [
             'email' => $request->email,
             'password' => $request->password,
         ];
 
-        if (Auth::attempt($credetials)) {
+        if (Auth::attempt($credentials)) {
+            // Autentikasi berhasil, buat session dan cookie
+            $user = Auth::user();
+
+            // simpan user_id ke dalam session
+            session(['user_id' => $user->id]);
+
+            // simpan nama custom cookie ke dalam cookie, dengan nilai "success"
+            cookie('custom_cookie_name', 'success', 60);
+
             return redirect('/home')->with('success', 'Login Success');
         }
 
@@ -50,6 +59,10 @@ class AuthController extends Controller
 
     public function logout()
     {
+        // Hapus session dan cookie
+        session()->forget('user_id');
+        cookie()->queue(cookie()->forget('custom_cookie_name'));
+
         Auth::logout();
 
         return redirect()->route('login');

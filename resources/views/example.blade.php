@@ -10,13 +10,11 @@
         </a>
     </header>
     <div class="page-heading">
-        <h3>Dashboard</h3>
+        <h3>Cookie Example</h3>
     </div>
 
-    <!-- Menampilkan nilai dari session -->
-    <p>Value of session is: {{ session('user_id') }}</p>
     <!-- Menampilkan nilai dari cookie -->
-    <p>Value of cookie is: {{ cookie('custom_cookie_name') }}</p>
+    <p>Value of cookie is: {{ $cookieValue }}</p>
 
     <footer>
         <div class="footer clearfix mb-0 text-muted">
