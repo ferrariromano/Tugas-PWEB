@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\SpesialisasiController;
 
 
 
@@ -58,3 +59,27 @@ Route::get('/dokter/{id}/edit', [DokterController::class, 'edit'])->name('dokter
 Route::put('/dokter/{id}', [DokterController::class, 'update'])->name('dokter.update');
 Route::delete('/dokter/{id}', [DokterController::class, 'destroy'])->name('dokter.destroy');
 
+
+
+
+
+// Menampilkan daftar spesialisasi
+Route::get('/spesialisasi', [SpesialisasiController::class,'index'])->name('spesialisasi.index');
+
+// Menampilkan formulir untuk menambahkan spesialisasi baru
+Route::get('/spesialisasi/create',  [SpesialisasiController::class,'create'])->name('spesialisasi.create');
+
+// Menyimpan spesialisasi baru ke database
+Route::post('/spesialisasi',  [SpesialisasiController::class,'store'])->name('spesialisasi.store');
+
+// Menampilkan detail dari spesialisasi tertentu
+Route::get('/spesialisasi/{id}',  [SpesialisasiController::class,'show'])->name('spesialisasi.show');
+
+// Menampilkan formulir untuk mengubah data spesialisasi tertentu
+Route::get('/spesialisasi/{id}/edit',  [SpesialisasiController::class,'edit'])->name('spesialisasi.edit');
+
+// Mengupdate data spesialisasi tertentu di database
+Route::put('/spesialisasi/{id}',  [SpesialisasiController::class,'update'])->name('spesialisasi.update');
+
+// Menghapus data spesialisasi tertentu di database
+Route::delete('/spesialisasi/{id}',  [SpesialisasiController::class,'destroy'])->name('spesialisasi.destroy');

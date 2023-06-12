@@ -47,6 +47,18 @@
                     </ul>
                 </li>
 
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-calendar-check-fill"></i>
+                        <span>Spesialis</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item active">
+                            <a href="{{ route('spesialisasi.index')}}">Tambah Spesialis</a>
+                        </li>
+                    </ul>
+                </li>
+
 
                 <li class="sidebar-item">
                     <a href="{{ route('logout') }}" class='sidebar-link'>

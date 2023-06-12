@@ -59,7 +59,6 @@
                     </ul>
                 </li>
 
-
                 <li class="sidebar-item">
                     <a href="{{ route('logout') }}" class='sidebar-link'>
                         <i class="bi bi-box-arrow-right"></i>

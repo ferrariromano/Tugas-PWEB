@@ -12,12 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dokter', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('spesialisasi');
+            $table->unsignedBigInteger('spesialisasi_id');
             $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);
-            $table->integer('umur');
             $table->timestamps();
+
+            $table->foreign('spesialisasi_id')
+                ->references('id')
+                ->on('spesialisasi')
+                ->onDelete('cascade');
         });
     }
 

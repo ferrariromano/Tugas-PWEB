@@ -10,45 +10,44 @@
         </a>
     </header>
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Edit Dokter - {{ $dokter->nama }}</div>
-                    <div class="card-body">
-                        <form action="{{ route('dokter.update', $dokter->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-
-                            <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama" value="{{ $dokter->nama }}" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="spesialisasi">Spesialisasi</label>
-                                <input type="text" class="form-control" id="spesialisasi" name="spesialisasi" value="{{ $dokter->spesialisasi }}" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="jenis_kelamin">Jenis Kelamin</label>
-                                <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
-                                    <option value="Laki-Laki" {{ $dokter->jenis_kelamin == 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
-                                    <option value="Perempuan" {{ $dokter->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="umur">Umur</label>
-                                <input type="number" class="form-control" id="umur" name="umur" value="{{ $dokter->umur }}" required>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="{{ route('dokter.index') }}" class="btn btn-secondary">Kembali</a>
-                        </form>
-                    </div>
+    <div class="card">
+        <div class="card-header">Edit Dokter</div>
+        <div class="card-body">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)<li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
-            </div>
+            @endif
+
+            <form action="{{ route('dokter.update', $dokter->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label for="nama">Nama Dokter</label>
+                    <input type="text" name="nama" id="nama" class="form-control" value="{{ old('nama', $dokter->nama) }}">
+                </div>
+                <div class="form-group">
+                    <label for="spesialisasi_id">Spesialisasi</label>
+                    <select name="spesialisasi_id" id="spesialisasi_id" class="form-control">
+                        <option value="">-- Pilih Spesialisasi --</option>
+                        @foreach ($spesialisasi as $s)
+                            <option value="{{ $s->id }}" {{ old('spesialisasi_id', $dokter->spesialisasi_id) == $s->id ? 'selected' : '' }}>{{ $s->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                    <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                        <option value="">-- Pilih Jenis Kelamin --</option>
+                        <option value="Laki-Laki" {{ old('jenis_kelamin', $dokter->jenis_kelamin) == 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
+                        <option value="Perempuan" {{ old('jenis_kelamin', $dokter->jenis_kelamin) == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
         </div>
     </div>
 

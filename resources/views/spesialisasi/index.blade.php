@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('menu')
-@extends('sidebar.form_dokter')
+@extends('sidebar.form_spesialisasi')
 @endsection
 @section('content')
 <div id="main">
@@ -11,9 +11,9 @@
     </header>
 
     <div class="card">
-        <div class="card-header">Daftar Dokter</div>
+        <div class="card-header">Daftar Spesialisasi</div>
         <div class="card-body">
-            <a href="{{ route('dokter.create') }}" class="btn btn-primary mb-3">Tambah Dokter Baru</a>
+            <a href="{{ route('spesialisasi.create') }}" class="btn btn-primary mb-3">Tambah Spesialisasi Baru</a>
 
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
@@ -23,22 +23,18 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Nama Dokter</th>
-                        <th>Spesialisasi</th>
-                        <th>Jenis Kelamin</th>
+                        <th>Nama Spesialisasi</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($dokter as $key => $d)
+                    @foreach ($spesialisasi as $key => $s)
                         <tr>
-                            <td>{{ $dokter->firstItem() + $key }}</td>
-                            <td>{{ $d->nama }}</td>
-                            <td>{{ $d->spesialisasi->nama }}</td>
-                            <td>{{ $d->jenis_kelamin }}</td>
+                            <td>{{ $spesialisasi->firstItem() + $key }}</td>
+                            <td>{{ $s->nama }}</td>
                             <td>
-                                <a href="{{ route('dokter.edit', $d->id) }}" class="btn btn-sm btn-success">Edit</a>
-                                <form action="{{ route('dokter.destroy', $d->id) }}" method="POST" class="d-inline">
+                                <a href="{{ route('spesialisasi.edit', $s->id) }}" class="btn btn-sm btn-success">Edit</a>
+                                <form action="{{ route('spesialisasi.destroy', $s->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin ingin menghapus data ini?')">Hapus</button>
@@ -49,7 +45,7 @@
                 </tbody>
             </table>
 
-            {{ $dokter->links() }}
+            {{ $spesialisasi->links() }}
         </div>
     </div>
 
@@ -57,11 +53,11 @@
     <footer>
         <div class="footer clearfix mb-0 text-muted">
             <div class="float-start">
-                <p>2023 &copy; Kelompok 1</p>
+                <p>2023 &copy; Kelompok </p>
             </div>
             <div class="float-end">
-                <p>Dibuat sepenuh  <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                    href="http://localcoffe.com">Kelompok 1</a></p>
+                <p>Dibuat sepenuh with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
+                href="http://localcoffe.com">Kelompok</a></p>
             </div>
         </div>
     </footer>

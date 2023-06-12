@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('menu')
-@extends('sidebar.form_dokter')
+@extends('sidebar.form_spesialisasi')
 @endsection
 @section('content')
 <div id="main">
@@ -11,7 +11,7 @@
     </header>
 
     <div class="card">
-        <div class="card-header">Tambah Dokter Baru</div>
+        <div class="card-header">Tambah Spesialisasi Baru</div>
         <div class="card-body">
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -23,33 +23,17 @@
                 </div>
             @endif
 
-            <form action="{{ route('dokter.store') }}" method="POST">
+            <form action="{{ route('spesialisasi.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="nama">Nama Dokter</label>
+                    <label for="nama">Nama Spesialisasi</label>
                     <input type="text" name="nama" id="nama" class="form-control" value="{{ old('nama') }}">
-                </div>
-                <div class="form-group">
-                    <label for="spesialisasi_id">Spesialisasi</label>
-                    <select name="spesialisasi_id" id="spesialisasi_id" class="form-control">
-                        <option value="">-- Pilih Spesialisasi --</option>
-                        @foreach ($spesialisasi as $s)
-                            <option value="{{ $s->id }}" {{ old('spesialisasi_id') == $s->id ? 'selected' : '' }}>{{ $s->nama }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="jenis_kelamin">Jenis Kelamin</label>
-                    <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
-                        <option value="">-- Pilih Jenis Kelamin --</option>
-                        <option value="Laki-Laki" {{ old('jenis_kelamin') == 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
-                        <option value="Perempuan" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
         </div>
     </div>
+
 
     <footer>
         <div class="footer clearfix mb-0 text-muted">
