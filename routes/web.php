@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PasienController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\PasienController;
 use App\Http\Controllers\SpesialisasiController;
 
 
@@ -20,26 +21,48 @@ use App\Http\Controllers\SpesialisasiController;
 |
 */
 
-// ----------------------------- Login ------------------------------//
 Route::get('/', function () {
-    return view('login');
+    return view('homepage');
 });
 
-Route::group(['middleware' => 'guest'], function () {
-    Route::get('/register', [AuthController::class, 'register'])->name('register');
-    Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
-    Route::get('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+Route::group(['middleware'=>'auth'],function()
+{
+    Route::get('home',function()
+    {
+        return view('home');
+    });
+    Route::get('home',function()
+    {
+        return view('home');
+    });
 });
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', [HomeController::class, 'index']);
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-});
 
+Auth::routes();
 
-// ----------------------------- Home ------------------------------//
+// ----------------------------- home dashboard ------------------------------//
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// -----------------------------login----------------------------------------//
+Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
+Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'authenticate']);
+Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+// ----------------------------- lock screen --------------------------------//
+Route::get('lock_screen', [App\Http\Controllers\LockScreen::class, 'lockScreen'])->middleware('auth')->name('lock_screen');
+Route::post('unlock', [App\Http\Controllers\LockScreen::class, 'unlock'])->name('unlock');
+
+// ------------------------------ register ---------------------------------//
+Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
+Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'storeUser'])->name('register');
+
+// ----------------------------- forget password ----------------------------//
+Route::get('forget-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'getEmail'])->name('forget-password');
+Route::post('forget-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'postEmail'])->name('forget-password');
+
+// ----------------------------- reset password -----------------------------//
+Route::get('reset-password/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'getPassword']);
+Route::post('reset-password', [App\Http\Controllers\Auth\ResetPasswordController::class, 'updatePassword']);
 
 // ----------------------------- Pasien ------------------------------//
 Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.index');

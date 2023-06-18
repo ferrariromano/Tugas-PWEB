@@ -13,10 +13,6 @@
         <h3>Dashboard</h3>
     </div>
 
-    <!-- Menampilkan nilai dari session -->
-    <p>Value of session is: {{ session('user_id') }}</p>
-    <!-- Menampilkan nilai dari cookie -->
-    <p>Value of cookie is: {{ cookie('custom_cookie_name') }}</p>
 
     <footer>
         <div class="footer clearfix mb-0 text-muted">
