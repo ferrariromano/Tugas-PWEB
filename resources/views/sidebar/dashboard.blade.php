@@ -19,8 +19,26 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <div class="card-body">
+                        <div class="badges">
+                            @if (Auth::user()->role_name=='Admin')
+                            <span>Name: <span class="fw-bolder">{{ Auth::user()->name }}</span></span>
+                            <hr>
+                            <span>Role Name:</span>
+                            <span class="badge bg-success">Admin</span>
+                            @endif
+                            @if (Auth::user()->role_name=='Pasien')
+                                <span>Name: <span class="fw-bolder">{{ Auth::user()->name }}</span></span>
+                                <hr>
+                                <span>Role Name:</span>
+                                <span class="badge bg-info">Pasien</span>
+                            @endif
+                        </div>
+                    </div>
+                </li>
 
-
+                @if (Auth::user()->role_name=='Admin')
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-people-fill"></i>
@@ -32,31 +50,7 @@
                         </li>
                     </ul>
                 </li>
-
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-calendar-check-fill"></i>
-                        <span>Dokter</span>
-                    </a>
-                    <ul class="submenu">
-                        <li class="submenu-item active">
-                            <a href="{{ route('dokter.index')}}">List Dokter</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-calendar-check-fill"></i>
-                        <span>Spesialis</span>
-                    </a>
-                    <ul class="submenu">
-                        <li class="submenu-item active">
-                            <a href="{{ route('spesialisasi.index')}}">Tambah Spesialis</a>
-                        </li>
-                    </ul>
-                </li>
-
+                @endif
 
                 <li class="sidebar-item">
                     <a href="{{ route('logout') }}" class='sidebar-link'>

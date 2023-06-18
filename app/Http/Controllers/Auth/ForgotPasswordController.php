@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use DB;
 use Carbon\Carbon;
-use Mail;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class ForgotPasswordController extends Controller
 {
@@ -30,7 +30,7 @@ class ForgotPasswordController extends Controller
 
         Mail::send('auth.verify',['token' => $token], function($message) use ($request) {
                   $message->from($request->email);
-                  $message->to('example@gmail.com');
+                  $message->to('ferrariromano74@gmail.com');
                   $message->subject('Reset Password Notification');
                });
 
