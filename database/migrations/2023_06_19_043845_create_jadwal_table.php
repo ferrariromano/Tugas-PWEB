@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('jadwals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('dokter_id');
-            $table->date('tanggal');
+            $table->foreignId('dokter_id')->constrained('dokters');
+            $table->string('hari')->default('-');
+            $table->date('tanggal')->nullable();
             $table->time('jam_mulai');
             $table->time('jam_selesai');
             $table->timestamps();
-
-            $table->foreign('dokter_id')->references('id')->on('dokters');
         });
     }
 

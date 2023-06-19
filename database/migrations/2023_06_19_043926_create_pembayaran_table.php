@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('metode_pembayaran');
             $table->timestamps();
 
-            $table->foreign('rekam_medis_id')->references('id')->on('rekam_medis');
+            $table->foreign('rekam_medis_id')->references('id')->on('rekam_medis')->onDelete('cascade');
         });
     }
 

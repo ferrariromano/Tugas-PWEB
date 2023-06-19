@@ -13,32 +13,30 @@ class PembayaranController extends Controller
     //
     public function index()
     {
-        $pembayarans = Pembayaran::with(['resep.obat', 'rekam_medis.pasien'])->get();
+        $pembayarans = Pembayaran::with(['rekamMedis'])->get();
         return view('pembayarans.index', compact('pembayarans'));
     }
 
     public function create()
     {
-        $reseps = Resep::with(['obat', 'rekam_medis.pasien'])->get();
-        return view('pembayarans.create', compact('reseps'));
+        $rekamMedis = RekamMedis::all();
+        return view('pembayarans.create', compact('rekamMedis'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'resep_id' => 'required',
-            'jumlah_bayar' => 'required'
+            'rekam_medis_id' => 'required',
+            'jumlah_bayar' => 'required',
+            'metode_pembayaran' => 'required'
         ]);
 
-        $pembayaran = new Pembayaran;
-        $pembayaran->resep_id = $request->resep_id;
-        $pembayaran->jumlah_bayar = $request->jumlah_bayar;
-        $pembayaran->save();
+        Pembayaran::create($request->all());
 
         // Update status pembayaran pada rekam medis
-        $rekam_medis = RekamMedis::where('id', $pembayaran->resep->rekam_medis->id)->firstOrFail();
-        $rekam_medis->status_pembayaran = 1;
-        $rekam_medis->save();
+        $rekamMedis = RekamMedis::findOrFail($request->rekam_medis_id);
+        $rekamMedis->status_pembayaran = 1;
+        $rekamMedis->save();
 
         return redirect()->route('pembayarans.index')
             ->with('success', 'Pembayaran berhasil ditambahkan.');
@@ -46,28 +44,27 @@ class PembayaranController extends Controller
 
     public function edit(Pembayaran $pembayaran)
     {
-        $reseps = Resep::with(['obat', 'rekam_medis.pasien'])->get();
-        return view('pembayarans.edit', compact('pembayaran', 'reseps'));
+        $rekamMedis = RekamMedis::all();
+        return view('pembayarans.edit', compact('pembayaran', 'rekamMedis'));
     }
 
     public function update(Request $request, Pembayaran $pembayaran)
     {
         $request->validate([
-            'resep_id' => 'required',
-            'jumlah_bayar' => 'required'
+            'rekam_medis_id' => 'required',
+            'jumlah_bayar' => 'required',
+            'metode_pembayaran' => 'required'
         ]);
 
-        $pembayaran->resep_id = $request->resep_id;
-        $pembayaran->jumlah_bayar = $request->jumlah_bayar;
-        $pembayaran->save();
+        $pembayaran->update($request->all());
 
         // Update status pembayaran pada rekam medis
-        $rekam_medis = RekamMedis::where('id', $pembayaran->resep->rekam_medis->id)->firstOrFail();
-        $rekam_medis->status_pembayaran = 1;
-        $rekam_medis->save();
+        $rekamMedis = RekamMedis::findOrFail($request->rekam_medis_id);
+        $rekamMedis->status_pembayaran = 1;
+        $rekamMedis->save();
 
         return redirect()->route('pembayarans.index')
-            ->with('success', 'Pembayaran berhasil diupdate.');
+            ->with('success', 'Pembayaran berhasil diubah.');
     }
 
     public function destroy(Pembayaran $pembayaran)
@@ -75,11 +72,15 @@ class PembayaranController extends Controller
         $pembayaran->delete();
 
         // Reset status pembayaran pada rekam medis
-        $rekam_medis = RekamMedis::where('id', $pembayaran->resep->rekam_medis->id)->firstOrFail();
-        $rekam_medis->status_pembayaran = 0;
-        $rekam_medis->save();
+        $rekamMedis = RekamMedis::findOrFail($pembayaran->rekam_medis_id);
+        $rekamMedis->status_pembayaran = 0;
+        $rekamMedis->save();
 
         return redirect()->route('pembayarans.index')
             ->with('success', 'Pembayaran berhasil dihapus.');
+    }
+        public function show(Pembayaran $pembayaran)
+    {
+        return view('pembayarans.show', compact('pembayaran'));
     }
 }

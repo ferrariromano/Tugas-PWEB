@@ -9,6 +9,8 @@ class Pembayaran extends Model
 {
     use HasFactory;
 
+    protected $table = 'pembayarans';
+
     protected $fillable = ['rekam_medis_id', 'jumlah_bayar', 'metode_pembayaran'];
 
     public function rekamMedis()

@@ -41,37 +41,77 @@
                 @if (Auth::user()->role_name=='Admin')
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
-                        <i class="bi bi-people-fill"></i>
-                        <span>tes</span>
+                        <i class="bi bi-clipboard2-pulse-fill"></i>
+                        <span>Pasien</span>
                     </a>
                     <ul class="submenu">
                         <li class="submenu-item active">
                             <a href="{{ route('pasiens.index') }}">List Pasien </a>
-                            <a href="{{ route('jadwals.index') }}">Jadwal</a>
-                            <a href="{{ route('obats.index') }}">Obat </a>
-                            <a href="{{ route('pembayarans.index') }}">Bayar </a>
-                            <a href="{{ route('rekam-medis.index') }}">rekam medis </a>
-                            <a href="{{ route('reseps.index') }}">resep</a>
-                            <a href="{{ route('dokters.index') }}">dokter </a>
                         </li>
                     </ul>
                 </li>
-                @endif
 
-
-
-                @if (Auth::user()->role_name=='Pasien')
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
-                        <i class="bi bi-people-fill"></i>
-                        <span>gg</span>
+                        <i class="bi bi-calendar-event-fill"></i>
+                        <span>Jadwal</span>
                     </a>
                     <ul class="submenu">
                         <li class="submenu-item active">
-                            <a href="{{ route('pasien.index') }}">ggg </a>
+                            <a href="{{ route('jadwals.index') }}">List Jadwal </a>
                         </li>
                     </ul>
                 </li>
+
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-bag-fill"></i>
+                        <span>Pembayaran</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item active">
+                            <a href="{{ route('pembayarans.index') }}">Pembayaran </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-file-medical-fill"></i>
+                        <span>Rekam Medis</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item active">
+                            <a href="{{ route('rekam-medis.index') }}">List Rekam Medis </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-capsule"></i>
+                        <span>Resep</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item active">
+                            <a href="{{ route('reseps.index') }}">List Resep </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-heart-pulse-fill"></i>
+                        <span>Dokter</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item active">
+                            <a href="{{ route('dokters.index') }}">List Dokter </a>
+                        </li>
+                    </ul>
+                </li>
+
                 @endif
 
                 <li class="sidebar-item">

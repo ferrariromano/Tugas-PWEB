@@ -11,8 +11,7 @@ use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\RekamMedisController;
 use App\Http\Controllers\ResepController;
-
-
+use App\Models\Jadwal;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +27,11 @@ use App\Http\Controllers\ResepController;
 Route::get('/', function () {
     return view('homepage');
 });
+
+Route::get('/jadwal_home', function(){
+    $jadwals = Jadwal::all();
+    return view('jadwal', compact('jadwals'));
+})->name('jadwal_home');
 
 Route::group(['middleware'=>'auth'],function()
 {
@@ -83,6 +87,7 @@ Route::post('pasiens', [PasienController::class, 'store'])->name('pasiens.store'
 Route::get('pasiens/{pasien}/edit', [PasienController::class, 'edit'])->name('pasiens.edit');
 Route::put('pasiens/{pasien}', [PasienController::class, 'update'])->name('pasiens.update');
 Route::delete('pasiens/{pasien}', [PasienController::class, 'destroy'])->name('pasiens.destroy');
+Route::get('/pasiens/{pasien}', [PasienController::class,'show'])->name('pasiens.show');
 
 
 
@@ -109,6 +114,7 @@ Route::post('pembayarans', [PembayaranController::class, 'store'])->name('pembay
 Route::get('pembayarans/{pembayaran}/edit', [PembayaranController::class, 'edit'])->name('pembayarans.edit');
 Route::put('pembayarans/{pembayaran}', [PembayaranController::class, 'update'])->name('pembayarans.update');
 Route::delete('pembayarans/{pembayaran}', [PembayaranController::class, 'destroy'])->name('pembayarans.destroy');
+Route::get('/pembayarans/{pembayaran}', [PembayaranController::class, 'show'])->name('pembayarans.show');
 
 // ----------------------------- rekam medis ------------------------------//
 Route::get('rekam-medis', [RekamMedisController::class, 'index'])->name('rekam-medis.index');
@@ -126,4 +132,8 @@ Route::post('reseps', [ResepController::class, 'store'])->name('reseps.store');
 Route::get('reseps/{resep}/edit', [ResepController::class, 'edit'])->name('reseps.edit');
 Route::put('reseps/{resep}', [ResepController::class, 'update'])->name('reseps.update');
 Route::delete('reseps/{resep}', [ResepController::class, 'destroy'])->name('reseps.destroy');
+Route::get('/reseps/{resep}', [ResepController::class,'show'])->name('reseps.show');
+
+
+
 

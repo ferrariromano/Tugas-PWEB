@@ -10,52 +10,42 @@
         </a>
     </header>
     <div class="container">
-        <h2>Daftar Pembayaran</h2>
-        <a href="{{ route('pembayarans.create') }}" class="btn btn-success mb-3">Tambah Pembayaran</a>
-        @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-        <table class="table table-striped">
+        <h1>Daftar Pembayaran</h1>
+
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <a href="{{ route('pembayarans.create') }}" class="btn btn-primary">Tambah Pembayaran</a>
+            </div>
+        </div>
+
+        <table class="table table-bordered">
             <thead>
-            <tr>
-                <th>No</th>
-                <th>Pasien</th>
-                <th>Nama Obat</th>
-                <th>Jumlah</th>
-                <th>Total Harga</th>
-                <th>Jumlah Bayar</th>
-                <th>Tanggal</th>
-                <th>Aksi</th>
-            </tr>
+                <tr>
+                    <th>No.</th>
+                    <th>ID Rekam Medis</th>
+                    <th>Jumlah Bayar</th>
+                    <th>Metode Pembayaran</th>
+                    <th>Aksi</th>
+                </tr>
             </thead>
             <tbody>
-            @foreach($pembayarans as $pembayaran)
+                @foreach ($pembayarans as $pembayaran)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $pembayaran->resep->rekam_medis->pasien->nama }}</td>
+                    <td>{{ $pembayaran->rekamMedis->id }}</td>
+                    <td>{{ $pembayaran->jumlah_bayar }}</td>
+                    <td>{{ $pembayaran->metode_pembayaran }}</td>
                     <td>
-                        @foreach($pembayaran->resep->obat as $obat)
-                            {{ $obat->nama }}<br>
-                        @endforeach
-                    </td>
-                    <td>
-                        @foreach($pembayaran->resep->detail_resep as $detail)
-                            {{ $detail->jumlah }}<br>
-                        @endforeach
-                    </td>
-                    <td>Rp {{ number_format($pembayaran->resep->total_harga, 0, '.', '.') }}</td>
-                    <td>Rp {{ number_format($pembayaran->jumlah_bayar, 0, '.', '.') }}</td>
-                    <td>{{ $pembayaran->created_at->format('d/m/Y H:i:s') }}</td>
-                    <td>
-                        <a href="{{ route('pembayarans.edit', $pembayaran->id) }}" class="btn btn-primary btn-sm mr-2">Edit</a>
-                        <form action="{{ route('pembayarans.destroy', $pembayaran->id) }}" method="POST" style="display: inline-block;">
+                        <a href="{{ route('pembayarans.show', $pembayaran) }}" class="btn btn-primary btn-sm">Detail</a>
+                        <a href="{{ route('pembayarans.edit', $pembayaran) }}" class="btn btn-success btn-sm">Edit</a>
+                        <form action="{{ route('pembayarans.destroy', $pembayaran) }}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus pembayaran ini?')">Hapus</button>
                         </form>
                     </td>
                 </tr>
-            @endforeach
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -66,11 +56,11 @@
     <footer>
         <div class="footer clearfix mb-0 text-muted">
             <div class="float-start">
-                <p>2023 &copy; Kelompok 1</p>
+                <p>2023 &copy;Clinik Pweb Team</p>
             </div>
             <div class="float-end">
                 <p>Dibuat sepenuh  <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                    href="http://localcoffe.com">Kelompok 1</a></p>
+                    href="pwebteam">Clinik Pweb Team</a></p>
             </div>
         </div>
     </footer>

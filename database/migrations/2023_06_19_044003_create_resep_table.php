@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('reseps', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('rekam_medis_id');
-            $table->unsignedBigInteger('obat_id');
+            $table->foreignId('rekam_medis_id')->constrained()->onDelete('cascade');
+            $table->foreignId('obat_id')->constrained()->onDelete('cascade');
             $table->integer('jumlah');
-
-            $table->foreign('rekam_medis_id')->references('id')->on('rekam_medis');
-            $table->foreign('obat_id')->references('id')->on('obats');
+            $table->timestamps();
         });
     }
 

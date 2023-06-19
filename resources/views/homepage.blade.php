@@ -102,10 +102,12 @@
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#portfolio">Tentang Klinik</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#about">Daftar</a>
-                    </li>
+                            href="#about">Daftar Dokter Poli</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#contact">About Us</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="{{ route('login') }}">Login</a></li>
+
                 </ul>
             </div>
         </div>
@@ -131,75 +133,49 @@
     <!--------------------------------------------------------Bagian Isi Konten----------------------------------------------------------------------------------->
     <section class="page-section portfolio" id="portfolio">
         <div class="container">
-            <!-- Portfolio Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Tentang Klinik Kami</h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-camera"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <!-- Portfolio Grid Items-->
-            <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
-                        <img class="img-fluid" src="{{ URL::to('assets/img/dalam1.jpg') }}" alt="..." />
-                    </div>
+
+            <div class="row justify-content-between gy-4">
+
+              <div class="col-lg-6 d-flex align-items-center" data-aos="fade-up">
+                <div class="content">
+                  <h3>CERITA KAMI.</h3>
+                  <p>Kami adalah mahasiswa jurusan teknik informatika yang menempuh mata kuliah pemrograman berbasis website. Dalam mata kuliah ini,
+                    kami mempelajari konsep dasar tentang pembuatan website dan aplikasi web, termasuk HTML, CSS, JavaScript, PHP, dan MySQL terutama Laravel. Dalam semester ini,
+                    kami diminta untuk membuat proyek akhir dalam bentuk website dan memilih topik sesuai dengan minat.
+                    Kami kemudian memutuskan untuk membuat aplikasi web untuk klinik yang menyediakan pelayanan kesehatan kepada masyarakat secara online.
+                  <p>Proyek akhir ini disebut Pweb Klinik dan dirancang untuk membantu pasien dalam mencari informasi seputar klinik, dokter, jadwal praktek,
+                    Selama proses pengembangan, kami menghadapi berbagai kendala seperti kesulitan dalam mengatur database dan menyesuaikan tampilan website agar mudah digunakan oleh pengguna.Namun,
+                    dengan semangat dan kerja keras tim, kami berhasil menyelesaikan proyek akhir dengan baik dan mendapatkan nilai yang memuaskan dari dosen. Proyek akhir ini tidak hanya memberikan pengalaman berharga dalam dunia pemrograman berbasis website,
+                    tetapi juga bermanfaat bagi yang membutuhkan pelayanan secara online.</p>
                 </div>
-                <!-- Portfolio Item 2-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
-                        <img class="img-fluid" src="{{ URL::to('assets/img/dalam2.jpg') }}" alt="..." />
-                    </div>
-                </div>
-                <!-- Portfolio Item 3-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
-                        <img class="img-fluid" src="{{ URL::to('assets/img/luar1.jpg') }}" alt="..." />
-                    </div>
-                </div>
+              </div>
 
 
+              <div class="col-md-6 col-lg-6 g-overflow-hidden align-self-end">
+                <img class="landing-block-node-img js-animation slideInUp img-fluid" src="/assets/img/klinikgambar.png" />
+              </div>
+
             </div>
-        </div>
+
+          </div>
     </section>
+
+
     <!-- About Section-->
-    <section class="page-section bg-primary text-white mb-0" id="about">
+    <section class="page-section bg-primary text-white mb-0 text-center" id="about">
         <div class="container">
-            <!--------------------------------------------------------Bagian Tombol Login dan daftar----------------------------------------------------------------------------------->
-            <h2 class="page-section-heading text-center text-uppercase text-white">Pendaftaran</h2>
+            <h2 class="page-section-heading text-center text-uppercase text-white">Cek Daftar Dokter</h2>
             <!-- Icon Divider-->
             <div class="divider-custom divider-light">
                 <div class="divider-custom-line"></div>
                 <div class="divider-custom-icon"><i class="fas fa-pencil"></i></div>
                 <div class="divider-custom-line"></div>
             </div>
-            <!--------------------------------------------------------Daftar sebagai Pasien----------------------------------------------------------------------------------->
-            <div class="row justify-content-between">
-                <div class="col-lg-4">
-                    <a class="btn btn-xl btn-outline-light" href="{{ route('register') }}">
-                        <i class="fas fa-book me-2"></i>
-                        Daftar Sebagai Pasien
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="btn btn-xl btn-outline-light" href="{{ route('login') }}">
-                        <i class="fas fa-book me-2"></i>
-                        Masuk Sebagai Admin
-                    </a>
-                </div>
-            </div>
 
-
-
-                {{-- <div class="col-lg-4 me-auto">
-                    <p class="lead">Anda bisa mendaftar secara online tanpa perlu mengantri atau
-                        langsung datang keKlinik <a class="btn btn-outline-light" href="/antrian-pasien">
-                            <i class="fas fa-users me-2"></i>
-                            Cek Antrian disini
-                        </a></p>
-                </div> --}}
+            <a class="btn btn-xl btn-outline-light" href="{{ URL::to('jadwal_home') }}">
+                <i class="fas fa-book me-2"></i>
+                CEK DISINI
+            </a>
     </section>
     <!--------------------------------------------------------Kontak Klinik----------------------------------------------------------------------------------->
     <section class="page-section" id="contact">
@@ -235,7 +211,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="team-member px-4 py-5 border shadow-on-hover text-center">
-                        <img src="{{ URL::to('assets/images/profile/ferrari.png') }}" alt="">
+                        <img src="{{ URL::to('assets/images/profile/bagas.png') }}" alt="">
                         <div class="team-member-content">
                             <h4 class="mb-2 mt-4">Bagas Cahyo Purnomo</h4>
                             <p class="mb-0">System Analyis</p>

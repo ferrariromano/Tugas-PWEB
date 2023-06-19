@@ -11,30 +11,42 @@
     </header>
 
     <div class="container">
-        <h2>Edit Pembayaran</h2>
-        <form action="{{ route('pembayarans.update', $pembayaran->id) }}" method="POST">
+        <h1>Edit Pembayaran</h1>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ route('pembayarans.update', $pembayaran) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="form-group">
-                <label for="resep_id">Resep:</label>
-                <select class="form-control @error('resep_id') is-invalid @enderror" id="resep_id" name="resep_id">
-                    <option value="">-- Pilih Resep --</option>
-                    @foreach($reseps as $resep)
-                        <option value="{{ $resep->id }}" {{ $pembayaran->resep_id == $resep->id ? 'selected' : '' }}>
-                            {{ $resep->rekam_medis->pasien->nama }} - {{ $resep->obat->implode('nama', ', ') }}
-                        </option>
+                <label for="rekam_medis_id">ID Rekam Medis:</label>
+                <select name="rekam_medis_id" id="rekam_medis_id" class="form-control">
+                    <option value="">Pilih rekam medis</option>
+                    @foreach ($rekamMedis as $rm)
+                        <option value="{{ $rm->id }}" {{ $rm->id == $pembayaran->rekam_medis_id ? 'selected' : '' }}>{{ $rm->id }} - {{ $rm->pasien->nama }}</option>
                     @endforeach
                 </select>
-                @error('resep_id')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
             </div>
             <div class="form-group">
                 <label for="jumlah_bayar">Jumlah Bayar:</label>
-                <input type="number" class="form-control @error('jumlah_bayar') is-invalid @enderror" id="jumlah_bayar" name="jumlah_bayar" value="{{ old('jumlah_bayar', $pembayaran->jumlah_bayar) }}">
-                @error('jumlah_bayar')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+                <input type="number" name="jumlah_bayar" id="jumlah_bayar" class="form-control" value="{{ $pembayaran->jumlah_bayar }}">
+            </div>
+            <div class="form-group">
+                <label for="metode_pembayaran">Metode Pembayaran:</label>
+                <select name="metode_pembayaran" id="metode_pembayaran" class="form-control">
+                    <option value="">Pilih metode pembayaran</option>
+                    <option value="Tunai" {{ $pembayaran->metode_pembayaran == 'Tunai' ? 'selected' : '' }}>Tunai</option>
+                    <option value="Transfer Bank" {{ $pembayaran->metode_pembayaran == 'Transfer Bank' ? 'selected' : '' }}>Transfer Bank</option>
+                    <option value="Kartu Kredit" {{ $pembayaran->metode_pembayaran == 'Kartu Kredit' ? 'selected' : '' }}>Kartu Kredit</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
@@ -45,11 +57,11 @@
     <footer>
         <div class="footer clearfix mb-0 text-muted">
             <div class="float-start">
-                <p>2023 &copy; Kelompok 1</p>
+                <p>2023 &copy;Clinik Pweb Team</p>
             </div>
             <div class="float-end">
                 <p>Dibuat sepenuh  <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                    href="http://localcoffe.com">Kelompok 1</a></p>
+                    href="pwebteam">Clinik Pweb Team</a></p>
             </div>
         </div>
     </footer>

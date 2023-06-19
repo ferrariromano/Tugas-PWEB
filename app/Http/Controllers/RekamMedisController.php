@@ -13,64 +13,64 @@ class RekamMedisController extends Controller
     //
     public function index()
     {
-        $rekam_medis = RekamMedis::with(['pasien', 'dokter'])->get();
+        $rekam_medis = RekamMedis::all();
+
         return view('rekam-medis.index', compact('rekam_medis'));
     }
 
     public function create()
     {
-        $pasien = Pasien::all();
-        $dokter = Dokter::all();
-        return view('rekam-medis.create', compact('pasien', 'dokter'));
+        $pasiens = Pasien::all();
+        $dokters = Dokter::all();
+
+        return view('rekam-medis.create', compact('pasiens', 'dokters'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'pasien_id' => 'required',
             'dokter_id' => 'required',
-            'diagnosa' => 'required'
+            'tanggal' => 'required|date',
+            'diagnosa' => 'required',
+            'tindakan' => 'required'
         ]);
 
-        $rekamMedis = new RekamMedis();
-        $rekamMedis->pasien_id = $request->pasien_id;
-        $rekamMedis->dokter_id = $request->dokter_id;
-        $rekamMedis->tanggal = now();
-        $rekamMedis->diagnosa = $request->diagnosa;
-        $rekamMedis->keterangan = $request->keterangan ?? null;
-        $rekamMedis->status_pembayaran = $request->status_pembayaran ?? false;
-        $rekamMedis->save();
+        RekamMedis::create($validatedData);
 
-        return redirect()->route('rekam-medis.index')
-            ->with('success', 'Rekam medis berhasil ditambahkan.');
+        return redirect('/rekam-medis')->with('success', 'Rekam medis berhasil ditambahkan!');
     }
 
-    public function edit(RekamMedis $rekam_medis)
+    public function edit($id)
     {
-        $pasien = Pasien::all();
-        $dokter = Dokter::all();
-        return view('rekam-medis.edit', compact('rekam_medis', 'pasien', 'dokter'));
+        $rekam_medis = RekamMedis::findOrFail($id);
+        $pasiens = Pasien::all();
+        $dokters = Dokter::all();
+
+        return view('rekam-medis.edit', compact('rekam_medis', 'pasiens', 'dokters'));
     }
 
-    public function update(Request $request, RekamMedis $rekam_medis)
+    public function update(Request $request, $id)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'pasien_id' => 'required',
             'dokter_id' => 'required',
-            'keluhan' => 'required'
+            'tanggal' => 'required|date',
+            'diagnosa' => 'required',
+            'tindakan' => 'required'
         ]);
 
-        $rekam_medis->update($request->all());
+        $rekam_medis = RekamMedis::findOrFail($id);
+        $rekam_medis->update($validatedData);
 
-        return redirect()->route('rekam-medis.index')
-            ->with('success', 'Rekam medis berhasil diupdate.');
+        return redirect('/rekam-medis')->with('success', 'Rekam medis berhasil diperbarui!');
     }
 
-    public function destroy(RekamMedis $rekam_medis)
+    public function destroy($id)
     {
+        $rekam_medis = RekamMedis::findOrFail($id);
         $rekam_medis->delete();
 
-        return redirect()->route('rekam-medis.index')
-            ->with('success', 'Rekam medis berhasil dihapus.');
+        return redirect('/rekam-medis')->with('success', 'Rekam medis berhasil dihapus!');
     }
 }

@@ -11,39 +11,36 @@
     </header>
 
     <div class="container">
-        <h2>Tambah Rekam Medis</h2>
+        <h2>Tambah Rekam Medis Baru</h2>
         <form action="{{ route('rekam-medis.store') }}" method="POST">
-            @csrf
+            {{ csrf_field() }}
             <div class="form-group">
-                <label for="pasien_id">Pasien:</label>
-                <select class="form-control @error('pasien_id') is-invalid @enderror" id="pasien_id" name="pasien_id">
-                    <option value="">-- Pilih Pasien --</option>
-                    @foreach($pasien as $p)
-                        <option value="{{ $p->id }}" {{ old('pasien_id') == $p->id ? 'selected' : '' }}>{{ $p->nama }}</option>
+                <label for="pasien_id">Nama Pasien</label>
+                <select name="pasien_id" id="pasien_id" class="form-control">
+                    @foreach ($pasiens as $ps)
+                        <option value="{{ $ps->id }}">{{ $ps->nama }}</option>
                     @endforeach
                 </select>
-                @error('pasien_id')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
             </div>
             <div class="form-group">
-                <label for="dokter_id">Dokter:</label>
-                <select class="form-control @error('dokter_id') is-invalid @enderror" id="dokter_id" name="dokter_id">
-                    <option value="">-- Pilih Dokter --</option>
-                    @foreach($dokter as $d)
-                        <option value="{{ $d->id }}" {{ old('dokter_id') == $d->id ? 'selected' : '' }}>{{ $d->nama }}</option>
+                <label for="dokter_id">Nama Dokter</label>
+                <select name="dokter_id" id="dokter_id" class="form-control">
+                    @foreach ($dokters as $dt)
+                        <option value="{{ $dt->id }}">{{ $dt->nama }}</option>
                     @endforeach
                 </select>
-                @error('dokter_id')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
             </div>
             <div class="form-group">
-                <label for="keluhan">Keluhan:</label>
-                <textarea class="form-control @error('keluhan') is-invalid @enderror" id="keluhan" name="keluhan">{{ old('keluhan') }}</textarea>
-                @error('keluhan')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+                <label for="tanggal">Tanggal</label>
+                <input type="date" name="tanggal" id="tanggal" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="diagnosa">Diagnosa</label>
+                <textarea name="diagnosa" id="diagnosa" class="form-control" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="tindakan">Tindakan</label>
+                <textarea name="tindakan" id="tindakan" class="form-control" rows="3" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
@@ -51,15 +48,14 @@
 
 
 
-
     <footer>
         <div class="footer clearfix mb-0 text-muted">
             <div class="float-start">
-                <p>2023 &copy; Kelompok 1</p>
+                <p>2023 &copy;Clinik Pweb Team</p>
             </div>
             <div class="float-end">
                 <p>Dibuat sepenuh  <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                    href="http://localcoffe.com">Kelompok 1</a></p>
+                    href="pwebteam">Clinik Pweb Team</a></p>
             </div>
         </div>
     </footer>

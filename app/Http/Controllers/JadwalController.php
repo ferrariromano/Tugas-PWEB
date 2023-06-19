@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokter;
 use App\Models\Jadwal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,20 +12,22 @@ class JadwalController extends Controller
     //
     public function index()
     {
+
         $jadwals = Jadwal::all();
         return view('jadwals.index', compact('jadwals'));
     }
 
     public function create()
     {
-        return view('jadwals.create');
+        $dokters = Dokter::all();
+        return view('jadwals.create', compact('dokters'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'dokter_id' => 'required',
-            'hari' => 'required',
+            'tanggal' => 'required|date',
             'jam_mulai' => 'required',
             'jam_selesai' => 'required'
         ]);
@@ -37,7 +40,8 @@ class JadwalController extends Controller
 
     public function edit(Jadwal $jadwal)
     {
-        return view('jadwals.edit', compact('jadwal'));
+        $dokters = Dokter::all();
+        return view('jadwals.edit', compact('jadwal', 'dokters'));
     }
 
     public function update(Request $request, Jadwal $jadwal)

@@ -60,4 +60,15 @@ class PasienController extends Controller
         return redirect()->route('pasiens.index')
             ->with('success', 'Pasien berhasil dihapus.');
     }
+
+    public function show()
+    {
+        $pasien = Pasien::orderBy('id')->first();
+
+        if (auth()->user()->hasRole('Pasien') || auth()->user()->pasien->id == $pasien->id) {
+            return view('pasiens.show', compact('pasien'));
+        } else {
+            abort(403);
+        }
+    }
 }

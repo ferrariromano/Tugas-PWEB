@@ -18,26 +18,26 @@ class UserSeeder extends Seeder
     {
         //
         // DB::table('users')->delete();
-        DB::table('users')->insert([
-            'name' => 'Ferrari Romano',
-            'email' => 'ferrariromano74@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('Kikik211101'),
-            'role_name' => 'Admin',
-            'remember_token' => Str::random(10),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Ferrari Romano',
+        //     'email' => 'ferrariromano74@gmail.com',
+        //     'email_verified_at' => now(),
+        //     'password' => Hash::make('Kikik211101'),
+        //     'role_name' => 'Admin',
+        //     'remember_token' => Str::random(10),
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
 
-        DB::table('users')->insert([
-            'name' => 'Augusta',
-            'email' => 'Augusta@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('Kikik211101'),
-            'role_name' => 'Pasien',
-            'remember_token' => Str::random(10),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Augusta',
+        //     'email' => 'Augusta@gmail.com',
+        //     'email_verified_at' => now(),
+        //     'password' => Hash::make('Kikik211101'),
+        //     'role_name' => 'Pasien',
+        //     'remember_token' => Str::random(10),
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
     }
 }

@@ -24,7 +24,7 @@
             </div>
             <div class="float-end">
                 <p>Dibuat sepenuh  <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                href="http://localcoffe.com">Kelompok 1 </a></p>
+                href="pwebteam">Clinik Pweb Team </a></p>
             </div>
         </div>
     </footer>
