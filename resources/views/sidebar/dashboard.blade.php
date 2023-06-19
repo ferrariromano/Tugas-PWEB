@@ -42,11 +42,33 @@
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-people-fill"></i>
-                        <span>Pasien</span>
+                        <span>tes</span>
                     </a>
                     <ul class="submenu">
                         <li class="submenu-item active">
-                            <a href="{{ route('pasien.index') }}">List Pasien </a>
+                            <a href="{{ route('pasiens.index') }}">List Pasien </a>
+                            <a href="{{ route('jadwals.index') }}">Jadwal</a>
+                            <a href="{{ route('obats.index') }}">Obat </a>
+                            <a href="{{ route('pembayarans.index') }}">Bayar </a>
+                            <a href="{{ route('rekam-medis.index') }}">rekam medis </a>
+                            <a href="{{ route('reseps.index') }}">resep</a>
+                            <a href="{{ route('dokters.index') }}">dokter </a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+
+
+
+                @if (Auth::user()->role_name=='Pasien')
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-people-fill"></i>
+                        <span>gg</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item active">
+                            <a href="{{ route('pasien.index') }}">ggg </a>
                         </li>
                     </ul>
                 </li>

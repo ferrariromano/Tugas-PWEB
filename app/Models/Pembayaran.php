@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pasien extends Model
+class Pembayaran extends Model
 {
     use HasFactory;
 
-    use HasFactory;
-
-    protected $fillable = ['nama', 'alamat', 'telepon'];
+    protected $fillable = ['rekam_medis_id', 'jumlah_bayar', 'metode_pembayaran'];
 
     public function rekamMedis()
     {
-        return $this->hasMany(RekamMedis::class);
+        return $this->belongsTo(RekamMedis::class);
     }
 }

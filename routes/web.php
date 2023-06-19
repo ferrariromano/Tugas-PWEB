@@ -6,7 +6,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
-use App\Http\Controllers\SpesialisasiController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\ObatController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\RekamMedisController;
+use App\Http\Controllers\ResepController;
 
 
 
@@ -64,45 +68,62 @@ Route::post('forget-password', [App\Http\Controllers\Auth\ForgotPasswordControll
 Route::get('reset-password/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'getPassword']);
 Route::post('reset-password', [App\Http\Controllers\Auth\ResetPasswordController::class, 'updatePassword']);
 
-// ----------------------------- Pasien ------------------------------//
-Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.index');
-Route::get('/pasien/create', [PasienController::class, 'create'])->name('pasien.create');
-Route::post('/pasien', [PasienController::class, 'store'])->name('pasien.store');
-Route::get('/pasien/{id}', [PasienController::class, 'show'])->name('pasien.show');
-Route::get('/pasien/{id}/edit', [PasienController::class, 'edit'])->name('pasien.edit');
-Route::put('/pasien/{id}', [PasienController::class, 'update'])->name('pasien.update');
-Route::delete('/pasien/{id}', [PasienController::class, 'destroy'])->name('pasien.destroy');
+// Route untuk Dokter
+Route::get('dokters', [DokterController::class, 'index'])->name('dokters.index');
+Route::get('dokters/create', [DokterController::class, 'create'])->name('dokters.create');
+Route::post('dokters', [DokterController::class, 'store'])->name('dokters.store');
+Route::get('dokters/{dokter}/edit', [DokterController::class, 'edit'])->name('dokters.edit');
+Route::put('dokters/{dokter}', [DokterController::class, 'update'])->name('dokters.update');
+Route::delete('dokters/{dokter}', [DokterController::class, 'destroy'])->name('dokters.destroy');
 
-// ----------------------------- Dokter ------------------------------//
-Route::get('/dokter', [DokterController::class, 'index'])->name('dokter.index');
-Route::get('/dokter/create', [DokterController::class, 'create'])->name('dokter.create');
-Route::post('/dokter', [DokterController::class, 'store'])->name('dokter.store');
-Route::get('/dokter/{id}', [DokterController::class, 'show'])->name('dokter.show');
-Route::get('/dokter/{id}/edit', [DokterController::class, 'edit'])->name('dokter.edit');
-Route::put('/dokter/{id}', [DokterController::class, 'update'])->name('dokter.update');
-Route::delete('/dokter/{id}', [DokterController::class, 'destroy'])->name('dokter.destroy');
+// Route untuk Pasien
+Route::get('pasiens', [PasienController::class, 'index'])->name('pasiens.index');
+Route::get('pasiens/create', [PasienController::class, 'create'])->name('pasiens.create');
+Route::post('pasiens', [PasienController::class, 'store'])->name('pasiens.store');
+Route::get('pasiens/{pasien}/edit', [PasienController::class, 'edit'])->name('pasiens.edit');
+Route::put('pasiens/{pasien}', [PasienController::class, 'update'])->name('pasiens.update');
+Route::delete('pasiens/{pasien}', [PasienController::class, 'destroy'])->name('pasiens.destroy');
 
 
 
+// ----------------------------- Jadwal ------------------------------//
+Route::get('jadwals', [JadwalController::class, 'index'])->name('jadwals.index');
+Route::get('jadwals/create', [JadwalController::class, 'create'])->name('jadwals.create');
+Route::post('jadwals', [JadwalController::class, 'store'])->name('jadwals.store');
+Route::get('jadwals/{jadwal}/edit', [JadwalController::class, 'edit'])->name('jadwals.edit');
+Route::put('jadwals/{jadwal}', [JadwalController::class, 'update'])->name('jadwals.update');
+Route::delete('jadwals/{jadwal}', [JadwalController::class, 'destroy'])->name('jadwals.destroy');
+
+// ----------------------------- obat ------------------------------//
+Route::get('obats', [ObatController::class, 'index'])->name('obats.index');
+Route::get('obats/create', [ObatController::class, 'create'])->name('obats.create');
+Route::post('obats', [ObatController::class, 'store'])->name('obats.store');
+Route::get('obats/{obat}/edit', [ObatController::class, 'edit'])->name('obats.edit');
+Route::put('obats/{obat}', [ObatController::class, 'update'])->name('obats.update');
+Route::delete('obats/{obat}', [ObatController::class, 'destroy'])->name('obats.destroy');
+
+// ----------------------------- pembayaran ------------------------------//
+Route::get('pembayarans', [PembayaranController::class, 'index'])->name('pembayarans.index');
+Route::get('pembayarans/create', [PembayaranController::class, 'create'])->name('pembayarans.create');
+Route::post('pembayarans', [PembayaranController::class, 'store'])->name('pembayarans.store');
+Route::get('pembayarans/{pembayaran}/edit', [PembayaranController::class, 'edit'])->name('pembayarans.edit');
+Route::put('pembayarans/{pembayaran}', [PembayaranController::class, 'update'])->name('pembayarans.update');
+Route::delete('pembayarans/{pembayaran}', [PembayaranController::class, 'destroy'])->name('pembayarans.destroy');
+
+// ----------------------------- rekam medis ------------------------------//
+Route::get('rekam-medis', [RekamMedisController::class, 'index'])->name('rekam-medis.index');
+Route::get('rekam-medis/create', [RekamMedisController::class, 'create'])->name('rekam-medis.create');
+Route::post('rekam-medis', [RekamMedisController::class, 'store'])->name('rekam-medis.store');
+Route::get('rekam-medis/{rekam_medis}/edit', [RekamMedisController::class, 'edit'])->name('rekam-medis.edit');
+Route::put('rekam-medis/{rekam_medis}', [RekamMedisController::class, 'update'])->name('rekam-medis.update');
+Route::delete('rekam-medis/{rekam_medis}', [RekamMedisController::class, 'destroy'])->name('rekam-medis.destroy');
 
 
-// Menampilkan daftar spesialisasi
-Route::get('/spesialisasi', [SpesialisasiController::class,'index'])->name('spesialisasi.index');
 
-// Menampilkan formulir untuk menambahkan spesialisasi baru
-Route::get('/spesialisasi/create',  [SpesialisasiController::class,'create'])->name('spesialisasi.create');
+Route::get('reseps', [ResepController::class, 'index'])->name('reseps.index');
+Route::get('reseps/create', [ResepController::class, 'create'])->name('reseps.create');
+Route::post('reseps', [ResepController::class, 'store'])->name('reseps.store');
+Route::get('reseps/{resep}/edit', [ResepController::class, 'edit'])->name('reseps.edit');
+Route::put('reseps/{resep}', [ResepController::class, 'update'])->name('reseps.update');
+Route::delete('reseps/{resep}', [ResepController::class, 'destroy'])->name('reseps.destroy');
 
-// Menyimpan spesialisasi baru ke database
-Route::post('/spesialisasi',  [SpesialisasiController::class,'store'])->name('spesialisasi.store');
-
-// Menampilkan detail dari spesialisasi tertentu
-Route::get('/spesialisasi/{id}',  [SpesialisasiController::class,'show'])->name('spesialisasi.show');
-
-// Menampilkan formulir untuk mengubah data spesialisasi tertentu
-Route::get('/spesialisasi/{id}/edit',  [SpesialisasiController::class,'edit'])->name('spesialisasi.edit');
-
-// Mengupdate data spesialisasi tertentu di database
-Route::put('/spesialisasi/{id}',  [SpesialisasiController::class,'update'])->name('spesialisasi.update');
-
-// Menghapus data spesialisasi tertentu di database
-Route::delete('/spesialisasi/{id}',  [SpesialisasiController::class,'destroy'])->name('spesialisasi.destroy');

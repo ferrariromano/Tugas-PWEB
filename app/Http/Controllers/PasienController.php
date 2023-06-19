@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pasien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -10,54 +11,53 @@ class PasienController extends Controller
 {
     public function index()
     {
-        $pasien = DB::select("SELECT * FROM pasien");
-        return view('pasien.index', ['pasien' => $pasien]);
+        $pasiens = Pasien::all();
+        return view('pasiens.index', compact('pasiens'));
     }
 
     public function create()
     {
-        return view('pasien.create');
+        return view('pasiens.create');
     }
 
     public function store(Request $request)
     {
-        $data = [
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'no_telepon' => $request->no_telepon
-        ];
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'telepon' => 'required|numeric'
+        ]);
 
-        DB::insert("INSERT INTO pasien (nama, alamat, no_telepon) VALUES (?, ?, ?)", [$data['nama'], $data['alamat'], $data['no_telepon']]);
-        return redirect()->route('pasien.index')->with('success', 'Pasien berhasil ditambahkan.');
+        Pasien::create($request->all());
+
+        return redirect()->route('pasiens.index')
+            ->with('success', 'Pasien berhasil ditambahkan.');
     }
 
-    public function show($id)
+    public function edit(Pasien $pasien)
     {
-        $pasien = DB::select("SELECT * FROM pasien WHERE id = ?", [$id])[0];
-        return view('pasien.show', ['pasien' => $pasien]);
+        return view('pasiens.edit', compact('pasien'));
     }
 
-    public function edit($id)
+    public function update(Request $request, Pasien $pasien)
     {
-        $pasien = DB::select("SELECT * FROM pasien WHERE id = ?", [$id])[0];
-        return view('pasien.edit', ['pasien' => $pasien]);
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'telepon' => 'required|numeric'
+        ]);
+
+        $pasien->update($request->all());
+
+        return redirect()->route('pasiens.index')
+            ->with('success', 'Pasien berhasil diupdate.');
     }
 
-    public function update(Request $request, $id)
+    public function destroy(Pasien $pasien)
     {
-        $data = [
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'no_telepon' => $request->no_telepon
-        ];
+        $pasien->delete();
 
-        DB::update("UPDATE pasien SET nama = ?, alamat = ?, no_telepon = ? WHERE id = ?", [$data['nama'], $data['alamat'], $data['no_telepon'], $id]);
-        return redirect()->route('pasien.index')->with('success', 'Pasien berhasil diperbarui.');
-    }
-
-    public function destroy($id)
-    {
-        DB::delete("DELETE FROM pasien WHERE id = ?", [$id]);
-        return redirect()->route('pasien.index')->with('success', 'Pasien berhasil dihapus.');
+        return redirect()->route('pasiens.index')
+            ->with('success', 'Pasien berhasil dihapus.');
     }
 }

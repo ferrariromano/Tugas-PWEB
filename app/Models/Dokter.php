@@ -9,17 +9,16 @@ class Dokter extends Model
 {
     use HasFactory;
 
-    protected $table = 'dokter';
+    protected $fillable = ['nama', 'spesialisasi', 'telepon'];
 
-    protected $fillable = [
-        'nama',
-        'spesialisasi_id',
-        'jenis_kelamin'
-    ];
-
-    public function spesialisasi()
+    public function jadwal()
     {
-        return $this->belongsTo(Spesialisasi::class);
+        return $this->hasMany(Jadwal::class);
+    }
+
+    public function rekamMedis()
+    {
+        return $this->hasMany(RekamMedis::class);
     }
 
 }
