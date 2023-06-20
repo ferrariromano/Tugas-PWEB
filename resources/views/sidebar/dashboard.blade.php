@@ -78,6 +78,18 @@
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
+                        <i class="bi bi-capsule-pill"></i>
+                        <span>Obat</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="submenu-item active">
+                            <a href="{{ route('obats.index') }}">Obat </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
                         <i class="bi bi-file-medical-fill"></i>
                         <span>Rekam Medis</span>
                     </a>
