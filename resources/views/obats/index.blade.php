@@ -21,7 +21,7 @@
             <tr>
                 <th>No</th>
                 <th>Nama</th>
-                <th>Jenis</th>
+                {{-- <th>Jenis</th> --}}
                 <th>Harga</th>
                 <th>Aksi</th>
             </tr>
@@ -31,7 +31,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $obat->nama }}</td>
-                    <td>{{ $obat->jenis }}</td>
+                    {{-- <td>{{ $obat->jenis }}</td> --}}
                     <td>Rp {{ number_format($obat->harga, 0, '.', '.') }}</td>
                     <td>
                         <a href="{{ route('obats.edit', $obat->id) }}" class="btn btn-primary btn-sm mr-2">Edit</a>

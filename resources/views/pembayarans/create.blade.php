@@ -12,42 +12,41 @@
 
     <div class="container">
         <h1>Tambah Pembayaran</h1>
-
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <form action="{{ route('pembayarans.store') }}" method="POST">
+        <form method="POST" action="{{ route('pembayarans.store') }}">
             @csrf
             <div class="form-group">
-                <label for="rekam_medis_id">ID Rekam Medis:</label>
+                <label for="rekam_medis_id">Rekam Medis ID:</label>
                 <select name="rekam_medis_id" id="rekam_medis_id" class="form-control">
-                    <option value="">Pilih rekam medis</option>
                     @foreach ($rekamMedis as $rm)
-                        <option value="{{ $rm->id }}">{{ $rm->id }} - {{ $rm->pasien->nama }}</option>
+                        <option value="{{ $rm->id }}">{{ $rm->id }}</option>
                     @endforeach
                 </select>
+                @error('rekam_medis_id')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
+
             <div class="form-group">
                 <label for="jumlah_bayar">Jumlah Bayar:</label>
                 <input type="number" name="jumlah_bayar" id="jumlah_bayar" class="form-control">
+                @error('jumlah_bayar')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
+
             <div class="form-group">
                 <label for="metode_pembayaran">Metode Pembayaran:</label>
                 <select name="metode_pembayaran" id="metode_pembayaran" class="form-control">
-                    <option value="">Pilih metode pembayaran</option>
-                    <option value="Tunai">Tunai</option>
-                    <option value="Transfer Bank">Transfer Bank</option>
-                    <option value="Kartu Kredit">Kartu Kredit</option>
+                    <option value="cash">Cash</option>
+                    <option value="debit">Debit</option>
+                    <option value="kredit">Kredit</option>
                 </select>
+                @error('metode_pembayaran')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Simpan</button>
+
+            <button type="submit" class="btn btn-primary">Tambah Pembayaran</button>
         </form>
     </div>
 

@@ -24,7 +24,6 @@ class ObatController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'jenis' => 'required',
             'harga' => 'required|numeric'
         ]);
 
@@ -43,7 +42,6 @@ class ObatController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'jenis' => 'required',
             'harga' => 'required|numeric'
         ]);
 

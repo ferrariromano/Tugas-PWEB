@@ -33,10 +33,7 @@ class PembayaranController extends Controller
 
         Pembayaran::create($request->all());
 
-        // Update status pembayaran pada rekam medis
-        $rekamMedis = RekamMedis::findOrFail($request->rekam_medis_id);
-        $rekamMedis->status_pembayaran = 1;
-        $rekamMedis->save();
+
 
         return redirect()->route('pembayarans.index')
             ->with('success', 'Pembayaran berhasil ditambahkan.');
@@ -58,10 +55,7 @@ class PembayaranController extends Controller
 
         $pembayaran->update($request->all());
 
-        // Update status pembayaran pada rekam medis
-        $rekamMedis = RekamMedis::findOrFail($request->rekam_medis_id);
-        $rekamMedis->status_pembayaran = 1;
-        $rekamMedis->save();
+
 
         return redirect()->route('pembayarans.index')
             ->with('success', 'Pembayaran berhasil diubah.');
@@ -71,15 +65,11 @@ class PembayaranController extends Controller
     {
         $pembayaran->delete();
 
-        // Reset status pembayaran pada rekam medis
-        $rekamMedis = RekamMedis::findOrFail($pembayaran->rekam_medis_id);
-        $rekamMedis->status_pembayaran = 0;
-        $rekamMedis->save();
-
         return redirect()->route('pembayarans.index')
             ->with('success', 'Pembayaran berhasil dihapus.');
     }
-        public function show(Pembayaran $pembayaran)
+
+    public function show(Pembayaran $pembayaran)
     {
         return view('pembayarans.show', compact('pembayaran'));
     }

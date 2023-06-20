@@ -104,7 +104,7 @@
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#about">Daftar Dokter Poli</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#contact">About Us</a></li>
+                            href="#contact">Tentang Kami</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="{{ route('login') }}">Login</a></li>
 
@@ -181,7 +181,7 @@
     <section class="page-section" id="contact">
         <div class="container">
             <!-- Contact Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">About Us</h2>
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Team</h2>
             <!-- Icon Divider-->
 
             <div class="divider-custom">
@@ -196,7 +196,7 @@
                         <img src="{{ URL::to('assets/images/profile/augusta.png') }}" alt="">
                         <div class="team-member-content">
                             <h4 class="mb-2 mt-4">Augusta Ahmad Bintang Widigdo</h4>
-                            <p class="mb-0">Project Manager</p>
+                            <p class="mb-0">212410103042</p>
                         </div>
                     </div>
                 </div>
@@ -205,7 +205,7 @@
                         <img src="{{ URL::to('assets/images/profile/ferrari.png') }}" alt="">
                         <div class="team-member-content">
                             <h4 class="mb-2 mt-4">Ferrari Romano</h4>
-                            <p class="mb-0">Developer</p>
+                            <p class="mb-0">212410103101</p>
                         </div>
                     </div>
                 </div>
@@ -214,7 +214,7 @@
                         <img src="{{ URL::to('assets/images/profile/bagas.png') }}" alt="">
                         <div class="team-member-content">
                             <h4 class="mb-2 mt-4">Bagas Cahyo Purnomo</h4>
-                            <p class="mb-0">System Analyis</p>
+                            <p class="mb-0">212410103041</p>
                         </div>
                     </div>
                 </div>

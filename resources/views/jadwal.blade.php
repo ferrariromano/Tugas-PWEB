@@ -17,7 +17,7 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">{{ $jadwal->dokter->nama }} - {{ $jadwal->dokter->spesialisasi }}</h5>
-                        <p class="card-text">Hari: {{ $jadwal->hari }}</p>
+                        {{-- <p class="card-text">Hari: {{ $jadwal->hari }}</p> --}}
                         <p class="card-text">Tanggal: {{ $jadwal->tanggal }}</p>
                         <p class="card-text">Jam Mulai: {{ $jadwal->jam_mulai }}</p>
                         <p class="card-text">Jam Selesai: {{ $jadwal->jam_selesai }}</p>

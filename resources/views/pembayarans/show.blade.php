@@ -12,33 +12,31 @@
 
     <div class="container">
         <h1>Detail Pembayaran</h1>
-
-        <table class="table table-bordered">
-            <tr>
-                <td>ID Rekam Medis:</td>
-                <td>{{ $pembayaran->rekamMedis->id }}</td>
-            </tr>
-            <tr>
-                <td>Nama Pasien:</td>
-                <td>{{ $pembayaran->rekamMedis->pasien->nama }}</td>
-            </tr>
-            <tr>
-                <td>Jumlah Bayar:</td>
-                <td>{{ $pembayaran->jumlah_bayar }}</td>
-            </tr>
-            <tr>
-                <td>Metode Pembayaran:</td>
-                <td>{{ $pembayaran->metode_pembayaran }}</td>
-            </tr>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <td>{{ $pembayaran->id }}</td>
+                </tr>
+                <tr>
+                    <th>Rekam Medis ID</th>
+                    <td>{{ $pembayaran->rekamMedis->id }}</td>
+                </tr>
+                <tr>
+                    <th>Jumlah Bayar</th>
+                    <td>{{ $pembayaran->jumlah_bayar }}</td>
+                </tr>
+                <tr>
+                    <th>Metode Pembayaran</th>
+                    <td>{{ $pembayaran->metode_pembayaran }}</td>
+                </tr>
+                <tr>
+                    <th>Tanggal Pembayaran</th>
+                    <td>{{ $pembayaran->created_at->format('d-m-Y H:i:s') }}</td>
+                </tr>
+            </tbody>
         </table>
-
-        <a href="{{ route('pembayarans.edit', $pembayaran) }}" class="btn btn-success">Edit</a>
-
-        <form action="{{ route('pembayarans.destroy', $pembayaran) }}" method="POST" style="display: inline-block;">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pembayaran ini?')">Hapus</button>
-        </form>
+        <a href="{{ route('pembayarans.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
 
 

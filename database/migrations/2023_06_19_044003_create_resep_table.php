@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('reseps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('rekam_medis_id')->constrained()->onDelete('cascade');
-            $table->foreignId('obat_id')->constrained()->onDelete('cascade');
+            $table->foreignId('rekam_medis_id')->constrained('rekam_medis');
+            $table->foreignId('obat_id')->constrained('obats');
             $table->integer('jumlah');
-            $table->timestamps();
+            $table->timestamps();;
         });
     }
 
